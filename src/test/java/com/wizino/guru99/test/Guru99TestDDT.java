@@ -49,7 +49,7 @@ public class Guru99TestDDT {
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0);
 
-        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+        for (int i = 1; i < sheet.getLastRowNum(); i++) {
             Row row = sheet.getRow(i);
             String username = row.getCell(1).getStringCellValue();
             String password = row.getCell(2).getStringCellValue();
