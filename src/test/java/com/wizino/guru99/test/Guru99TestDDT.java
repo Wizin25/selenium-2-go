@@ -45,117 +45,45 @@ public class Guru99TestDDT {
     public void CheckLoginGivenValidAccountLoginsSuccessfully() throws InterruptedException, FileNotFoundException, IOException {
         myBrowser = new ChromeDriver();
         myBrowser.get("https://demo.guru99.com/v4");
-        FileInputStream fis = new FileInputStream("C:\\Users\\tanph\\OneDrive\\Máy tính\\data.xlsx");
+        FileInputStream fis = new FileInputStream("C:\\Users\\tanph\\OneDrive\\Máy tính\\messy stub\\netbean 19\\selenium-2-go\\data\\data.xlsx");
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0);
 
         for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-
-                Row row = sheet.getRow(i);
-                
-
-                String username = row.getCell(1).getStringCellValue();
-                String password = row.getCell(2).getStringCellValue();
-
-                // Your test logic here using username, password, and expectedMessage
-                // ...
-                // Example: login, perform actions, and assert
-                WebElement txtUsername = myBrowser.findElement(By.xpath("//input[@name='uid']"));
-                txtUsername.sendKeys(username);
-                WebElement txtPassword = myBrowser.findElement(By.xpath("//input[@name='password']"));
-                txtPassword.sendKeys(password);
-                WebElement btnLogin = myBrowser.findElement(By.cssSelector("input[value='LOGIN']"));
-                btnLogin.click();
-
-                WebElement lblMessage = myBrowser.findElement(By.cssSelector("tr[class='heading3'] td"));
-                String welcomeMessage = lblMessage.getText();
-                System.out.println("Message: " + welcomeMessage);
-                assertEquals("Manger Id : " + username, welcomeMessage);
-                Thread.sleep(3000);
-                try {
-                    WebElement btnLogout = myBrowser.findElement(By.cssSelector("a[href='Logout.php']"));
-                    btnLogout.click();
-                    btnLogout.submit();
-                } catch (Exception e) {
-                  // System.out.println(e.getMessage());
-                }
-                
-            }
-
-            /* // Wait for logout to complete
-            Thread.sleep(3000);
-            username = row.getCell(2).getStringCellValue();
-            password = row.getCell(3).getStringCellValue();
-            WebElement txtUsername2 = myBrowser.findElement(By.xpath("//input[@name='uid']"));
-            txtUsername2.sendKeys(username);
-            WebElement txtPassword2 = myBrowser.findElement(By.xpath("//input[@name='password']"));
-            txtPassword2.sendKeys(password);
-            WebElement btnLogin2 = myBrowser.findElement(By.cssSelector("input[value='LOGIN']"));
-            btnLogin2.click();
-            WebElement lblMessage2 = myBrowser.findElement(By.cssSelector("tr[class='heading3'] td"));
-            String welcomeMessage2 = lblMessage2.getText();
-            System.out.println("Message: " + welcomeMessage2);
-            assertEquals("Manger Id : " + username, welcomeMessage2);
-            Thread.sleep(3000);
-            try {
-                WebElement btnLogout = myBrowser.findElement(By.cssSelector("a[href='Logout.php']"));
-                btnLogout.click();
-                btnLogout.submit();
-            } catch (Exception e) {
-            }
+            Row row = sheet.getRow(i);
+            String username = row.getCell(1).getStringCellValue();
+            String password = row.getCell(2).getStringCellValue();
             
-             Thread.sleep(3000);
-            username = row.getCell(4).getStringCellValue();
-            password = row.getCell(5).getStringCellValue();
-            WebElement txtUsername3 = myBrowser.findElement(By.xpath("//input[@name='uid']"));
-            txtUsername3.sendKeys(username );
-            WebElement txtPassword3 = myBrowser.findElement(By.xpath("//input[@name='password']"));
-            txtPassword3.sendKeys(password);
-            WebElement btnLogin3 = myBrowser.findElement(By.cssSelector("input[value='LOGIN']"));
-            btnLogin3.click();
-            WebElement lblMessage3 = myBrowser.findElement(By.cssSelector("tr[class='heading3'] td"));
-            String welcomeMessage3 = lblMessage3.getText();
-            System.out.println("Message: " + welcomeMessage3);
-            assertEquals("Manger Id : " + username, welcomeMessage3);
+            WebElement txtUsername = myBrowser.findElement(By.xpath("//input[@name='uid']"));
+            txtUsername.sendKeys(username);
+            
+            WebElement txtPassword = myBrowser.findElement(By.xpath("//input[@name='password']"));
+            txtPassword.sendKeys(password);
+            
+            WebElement btnLogin = myBrowser.findElement(By.cssSelector("input[value='LOGIN']"));
+            btnLogin.click();
+            
+            WebElement lblMessage = myBrowser.findElement(By.cssSelector("tr[class='heading3'] td"));
+            String welcomeMessage = lblMessage.getText();
+            System.out.println("Message: " + welcomeMessage);
+            assertEquals("Manger Id : " + username, welcomeMessage);
             Thread.sleep(3000);
             try {
                 WebElement btnLogout = myBrowser.findElement(By.cssSelector("a[href='Logout.php']"));
                 btnLogout.click();
                 btnLogout.submit();
             } catch (Exception e) {
+                // System.out.println(e.getMessage());
             }
 
-        }*/
-        
+        }
+
     }
 
     @AfterEach
     public void tearDown() throws InterruptedException {
-        // Thực hiện đăng xuất ở đây
-        /* WebElement btnLogout = myBrowser.findElement(By.cssSelector("a[href='Logout.php']"));
-        btnLogout.click();
-        btnLogout.submit();*/
-
-        // Đợi một khoảng thời gian để chờ quá trình đăng xuất hoàn thành
         Thread.sleep(3000);
-
         // Đóng trình duyệt
         myBrowser.quit();
     }
 }
-
-/* @AfterAll
-    public static void tearDownClass() throws InterruptedException {
-
-        Thread.sleep(5000);
-        // Thực hiện đăng xuất ở đây
-        WebElement btnLogout = myBrowser.findElement(By.cssSelector("a[href='Logout.php']"));
-        btnLogout.click();
-        btnLogout.submit();
-        // Đợi một khoảng thời gian để chờ quá trình đăng xuất hoàn thành
-        Thread.sleep(5000);
-        // Đóng trình duyệt
-        myBrowser.quit();
-    }
-    
-}*/
