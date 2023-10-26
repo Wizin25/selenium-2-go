@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.wizino.guru99.test.Guru99TestDDT
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.10 s -- in com.wizino.guru99.test.Guru99TestDDT
